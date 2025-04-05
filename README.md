@@ -1,73 +1,106 @@
-# Welcome to your Lovable project
+Sure! Here's a clean, professional `README.md` file for **ReConnect – A Contact-Based Social Utility App**:
 
-## Project info
+---
 
-**URL**: https://lovable.dev/projects/ae32a714-6ed1-4ec9-ba33-c059f3a29f4c
+# ReConnect
 
-## How can I edit this code?
+**Turn Your Contacts Into Real Connections**  
+_ReConnect is a contact-first, location-aware social utility app designed to help users stay in touch, plan meetups, and request or offer help from people they already know._
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 Overview
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ae32a714-6ed1-4ec9-ba33-c059f3a29f4c) and start prompting.
+ReConnect transforms your phonebook into a live, smart social network. Instead of connecting you with strangers, it helps you find and engage with your existing contacts based on proximity and real-world context. From planning impromptu meetups to finding help when you move cities — ReConnect makes your contact list useful again.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🧠 Key Features
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Auto-Friend Matching** from synced contacts
+- **Location-Based Notifications** for nearby connections
+- **Live Status Cards** (e.g. “In Delhi till Sunday!”)
+- **Meetup Planning Tools** with polls & RSVPs
+- **Help Board** for local requests like housing, jobs, or recommendations
+- **Trusted Circles** to group contacts (e.g. friends, colleagues, alumni)
+- **In-App Messaging** or deep linking to WhatsApp
+- **Privacy Controls** to choose who sees your updates or location
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🧑‍💻 Tech Stack
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Frontend:** React Native / Flutter  
+- **Backend:** Node.js with Express / Firebase  
+- **Database:** Firestore / MongoDB  
+- **Location Services:** Google Maps API / GeoFire  
+- **Authentication:** Phone number (OTP-based)  
+- **Deployment:** Firebase / Vercel / AWS  
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 📦 Installation
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/reconnect.git
+
+# Navigate into the folder
+cd reconnect
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run start
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📐 Project Structure
 
-**Use GitHub Codespaces**
+```
+/client           # Frontend (React Native or Flutter)
+/server           # Backend services and API logic
+/database         # Schema designs and Firestore structure
+/docs             # Product docs, API specs, and wireframes
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 📍 Use Cases
 
-This project is built with:
+- Students moving to new cities
+- Professionals relocating for jobs
+- Travelers wanting to meet known contacts
+- Local help or recommendations via known people
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 🔐 Privacy First
 
-Simply open [Lovable](https://lovable.dev/projects/ae32a714-6ed1-4ec9-ba33-c059f3a29f4c) and click on Share -> Publish.
+ReConnect is built with user privacy at its core:
+- You control your visibility
+- No public profiles or posts
+- All interactions are limited to your contact list or trusted groups
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes it is!
+## 📈 Roadmap
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- ✅ MVP: Contact sync, notifications, and status cards  
+- 🔜 Phase 2: Meetup tools, Help Board, group creation  
+- 🔜 Phase 3: Monetization, partnerships, expansion  
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## 🤝 Contributions
+
+We welcome contributions! Please fork the repo, create a feature branch, and submit a pull request. Be sure to follow the contribution guidelines in `/docs/contributing.md`.
+
+---
+
+
+## 📝 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
