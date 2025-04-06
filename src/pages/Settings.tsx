@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { User, MapPin, Bell, Shield, Eye } from "lucide-react";
+import { User, MapPin, Bell, Shield, Eye, Palette } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/use-toast";
 import {
@@ -15,6 +15,7 @@ import ProfileTab from "@/components/settings/ProfileTab";
 import PrivacyTab from "@/components/settings/PrivacyTab";
 import NotificationsTab from "@/components/settings/NotificationsTab";
 import SecurityTab from "@/components/settings/SecurityTab";
+import AppearanceTab from "@/components/settings/AppearanceTab";
 
 const Settings = () => {
   const [user, setUser] = useState<any>(null);
@@ -94,6 +95,10 @@ const Settings = () => {
               <Eye className="h-4 w-4" />
               <span>Privacy</span>
             </TabsTrigger>
+            <TabsTrigger value="appearance" className="flex items-center gap-2">
+              <Palette className="h-4 w-4" />
+              <span>Appearance</span>
+            </TabsTrigger>
             <TabsTrigger value="notifications" className="flex items-center gap-2">
               <Bell className="h-4 w-4" />
               <span>Notifications</span>
@@ -111,6 +116,10 @@ const Settings = () => {
         
         <TabsContent value="privacy" className="space-y-6">
           <PrivacyTab user={user} />
+        </TabsContent>
+        
+        <TabsContent value="appearance" className="space-y-6">
+          <AppearanceTab user={user} />
         </TabsContent>
         
         <TabsContent value="notifications" className="space-y-6">
