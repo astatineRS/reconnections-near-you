@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,6 +28,19 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, userName }) => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState<string>("");
+  
+  useEffect(() => {
+    // Get user email when component mounts
+    const fetchUserEmail = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user?.email) {
+        setUserEmail(data.user.email);
+      }
+    };
+    
+    fetchUserEmail();
+  }, []);
   
   const navItems = [
     { name: "Home", path: "/", icon: Home },
@@ -158,7 +171,7 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, userName }) => {
                       <div className="flex flex-col">
                         <p className="font-medium">{userName || "User"}</p>
                         <p className="text-xs text-muted-foreground truncate">
-                          {supabase.auth.getSession() ? supabase.auth.getUser().then(data => data.data.user?.email) : ""}
+                          {userEmail}
                         </p>
                       </div>
                     </DropdownMenuLabel>
