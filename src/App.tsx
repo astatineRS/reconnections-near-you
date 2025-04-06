@@ -13,6 +13,7 @@ import CreateStatus from "./pages/CreateStatus";
 import HelpBoard from "./pages/HelpBoard";
 import HelpDetail from "./pages/HelpDetail";
 import CreateHelpRequest from "./pages/CreateHelpRequest";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/help" element={<HelpBoard />} />
             <Route path="/help/new" element={<CreateHelpRequest />} />
             <Route path="/help/:id" element={<HelpDetail />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
