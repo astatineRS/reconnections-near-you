@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/use-toast";
+import { Loader2 } from "lucide-react";
 
 const Layout: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -88,8 +89,18 @@ const Layout: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-lg text-gray-500">Loading...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-gray-50">
+        <div className="flex flex-col items-center justify-center space-y-4">
+          <div className="relative">
+            <div className="h-16 w-16 rounded-full border-t-4 border-b-4 border-primary animate-spin"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent text-2xl font-bold">
+                R
+              </span>
+            </div>
+          </div>
+          <p className="text-gray-500 animate-pulse">Loading ReConnect...</p>
+        </div>
       </div>
     );
   }
@@ -101,7 +112,7 @@ const Layout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header userAvatar={user.avatar_url} userName={user.name} />
-      <main className="flex-grow">
+      <main className="flex-grow pb-16 md:pb-0 animate-fade-in">
         <Outlet />
       </main>
     </div>
