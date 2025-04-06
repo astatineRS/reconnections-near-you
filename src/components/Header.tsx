@@ -1,11 +1,21 @@
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Bell, Menu } from "lucide-react";
+import { Bell, LogOut, Menu, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/components/ui/use-toast";
 
 interface HeaderProps {
   userAvatar?: string;
@@ -15,6 +25,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ userAvatar, userName }) => {
   const location = useLocation();
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   
   const navItems = [
     { name: "Dashboard", path: "/" },
@@ -22,6 +33,23 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, userName }) => {
     { name: "Status Updates", path: "/status" },
     { name: "Help Board", path: "/help" },
   ];
+  
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      toast({
+        title: "Signed out",
+        description: "You have been signed out successfully",
+      });
+      navigate("/auth");
+    } catch (error: any) {
+      toast({
+        title: "Error signing out",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  };
   
   const NavLinks = () => (
     <nav className="flex space-x-1 md:space-x-2">
@@ -83,6 +111,14 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, userName }) => {
                           </Button>
                         </Link>
                       ))}
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-start text-red-500 mt-4"
+                        onClick={handleSignOut}
+                      >
+                        <LogOut size={16} className="mr-2" />
+                        Sign Out
+                      </Button>
                     </div>
                   </div>
                 </SheetContent>
@@ -95,10 +131,33 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, userName }) => {
                 <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span>
               </Button>
               
-              <Avatar className="cursor-pointer">
-                <AvatarImage src={userAvatar} />
-                <AvatarFallback>{userName?.charAt(0) || "U"}</AvatarFallback>
-              </Avatar>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage src={userAvatar} />
+                    <AvatarFallback>{userName?.charAt(0) || "U"}</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="font-medium">{userName || "User"}</p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="cursor-pointer">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="text-red-500" onClick={handleSignOut}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </>
           )}
         </div>
