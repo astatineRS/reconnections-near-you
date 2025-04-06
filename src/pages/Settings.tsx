@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -153,8 +152,15 @@ const Settings = () => {
           avatar_url: profile.avatar_url || "",
         });
         
+        // Fix for type error - ensure visibility is one of the allowed values
+        let visibilityValue: "everyone" | "contacts" | "none" = "contacts"; // Default
+        
+        if (profile.visibility === "everyone" || profile.visibility === "contacts" || profile.visibility === "none") {
+          visibilityValue = profile.visibility;
+        }
+        
         visibilityForm.reset({
-          visibility: profile.visibility || "contacts",
+          visibility: visibilityValue,
         });
         
       } catch (error: any) {
